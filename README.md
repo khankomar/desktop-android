@@ -9,7 +9,7 @@
 - تمرکز روی Android: لمس، trackpad مجازی، keyboard روی صفحه و fullscreen
 - ترمینال و `sudo` فعال برای نصب هر برنامه‌ای که لازم دارید
 - پروفایل کیفیت متعادل برای اینترنت موبایل و امکان تغییر آن
-- Claude Desktop به‌صورت اختیاری (پیش‌فرض نصب نمی‌شود)
+- Claude Desktop (روی Codespaces از پیش نصب است؛ در Docker/Railway اختیاری)
 
 ## اجرای رایگان روی GitHub Codespaces (پیشنهادی)
 
@@ -149,7 +149,9 @@ webtop یک محیط دسکتاپ کامل با terminal و `sudo` بدون رم
 
 ## Claude Desktop (اختیاری)
 
-به‌صورت پیش‌فرض نصب نمی‌شود. برای نصب، image را با این build arg بسازید (یا در Railway به Variables بدهید):
+روی **GitHub Codespaces** از پیش نصب است (در `.devcontainer/devcontainer.json` مقدار `INSTALL_CLAUDE_DESKTOP` برابر `true` است). بعد از باز شدن دسکتاپ، از منوی Applications ← Claude را باز کنید و وارد حساب خود شوید؛ صفحه‌ی ورود در Chromium داخل همان دسکتاپ باز می‌شود. اگر Codespace را قبل از این تغییر ساخته‌اید، یک بار **Rebuild Container** بزنید.
+
+در Docker و Railway به‌صورت پیش‌فرض نصب نمی‌شود. برای نصب، image را با این build arg بسازید (یا در Railway به Variables بدهید):
 
 ```bash
 docker compose build --build-arg INSTALL_CLAUDE_DESKTOP=true

@@ -5,7 +5,12 @@
   "name": "Android Remote Desktop",
   "build": {
     "dockerfile": "../Dockerfile",
-    "context": ".."
+    "context": "..",
+    // Claude Desktop is preinstalled in the Codespace. Set to "false" for a
+    // plain desktop (smaller image, faster first build).
+    "args": {
+      "INSTALL_CLAUDE_DESKTOP": "true"
+    }
   },
 
   // Keep the image's s6 /init as the main process; it starts XFCE + Selkies.

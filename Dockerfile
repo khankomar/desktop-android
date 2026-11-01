@@ -20,13 +20,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # ---- Optional: Claude Desktop (official Anthropic apt repo; amd64 + arm64) ----
+# --no-install-recommends skips the VM extras (qemu, ovmf, virtiofsd) that
+# Claude's sandboxed-VM feature recommends; they are large and unused here.
 RUN if [ "$INSTALL_CLAUDE_DESKTOP" = "true" ]; then \
       curl -fsSLo /usr/share/keyrings/claude-desktop-archive-keyring.asc \
         https://downloads.claude.ai/claude-desktop/key.asc && \
       echo "deb [signed-by=/usr/share/keyrings/claude-desktop-archive-keyring.asc] https://downloads.claude.ai/claude-desktop/apt/stable stable main" \
         > /etc/apt/sources.list.d/claude-desktop.list && \
       apt-get update && \
-      apt-get install -y claude-desktop && \
+      DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        claude-desktop libayatana-appindicator3-1 && \
       rm -rf /var/lib/apt/lists/* && \
       if [ "$CLAUDE_NO_SANDBOX" = "true" ]; then \
         for f in /usr/share/applications/claude*.desktop; do \
