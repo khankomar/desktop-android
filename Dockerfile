@@ -61,7 +61,10 @@ ENV PUID=1000 \
     SELKIES_H264_CRF=30
 
 # Android-friendly input / rendering
-ENV SELKIES_USE_BROWSER_CURSORS="true|locked" \
+# Cursor is drawn on a page canvas (false), not as a CSS cursor (true):
+# touch browsers never show CSS cursors, so with "true" a phone has no visible
+# mouse pointer at all. Trackpad mode composites the cursor into the video.
+ENV SELKIES_USE_BROWSER_CURSORS="false" \
     SELKIES_USE_CSS_SCALING="true" \
     SELKIES_SCALING_DPI="96|locked" \
     SELKIES_USE_PAINT_OVER_QUALITY="true|locked" \
