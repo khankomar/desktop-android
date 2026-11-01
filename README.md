@@ -149,7 +149,7 @@ webtop یک محیط دسکتاپ کامل با terminal و `sudo` بدون رم
 
 ## Claude Desktop (اختیاری)
 
-روی **GitHub Codespaces** از پیش نصب است (در `.devcontainer/devcontainer.json` مقدار `INSTALL_CLAUDE_DESKTOP` برابر `true` است). بعد از باز شدن دسکتاپ، از منوی Applications ← Claude را باز کنید و وارد حساب خود شوید؛ صفحه‌ی ورود در Chromium داخل همان دسکتاپ باز می‌شود. اگر Codespace را قبل از این تغییر ساخته‌اید، یک بار **Rebuild Container** بزنید.
+روی **GitHub Codespaces** از پیش نصب است (در `.devcontainer/devcontainer.json` مقدار `INSTALL_CLAUDE_DESKTOP` برابر `true` است). بعد از باز شدن دسکتاپ، روی آیکون **Claude** روی صفحه‌ی دسکتاپ بزنید (یا از منوی Applications ← Development ← Claude) و وارد حساب خود شوید؛ صفحه‌ی ورود در Chromium داخل همان دسکتاپ باز می‌شود. اگر Codespace را قبل از این تغییر ساخته‌اید، یک بار **Rebuild Container** بزنید.
 
 در Docker و Railway به‌صورت پیش‌فرض نصب نمی‌شود. برای نصب، image را با این build arg بسازید (یا در Railway به Variables بدهید):
 

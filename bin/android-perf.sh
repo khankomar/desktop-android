@@ -80,4 +80,24 @@ if command -v xset >/dev/null 2>&1 && [ -n "${DISPLAY:-}" ]; then
   xset s noblank 2>/dev/null || true
 fi
 
+# 8. Claude Desktop shortcut on the desktop (only if it is installed). Its menu
+#    entry sits under Development, which is easy to miss on a phone.
+claude_src=""
+for f in /usr/share/applications/com.anthropic.Claude.desktop \
+         /usr/share/applications/claude-desktop.desktop; do
+  [ -f "$f" ] && { claude_src="$f"; break; }
+done
+if [ -n "$claude_src" ]; then
+  desk="$(xdg-user-dir DESKTOP 2>/dev/null || echo "$HOME/Desktop")"
+  link="$desk/claude.desktop"
+  if [ ! -e "$link" ]; then
+    mkdir -p "$desk" && cp "$claude_src" "$link" && chmod +x "$link" || log "could not create $link"
+    # Mark the launcher trusted so XFCE does not ask before running it.
+    if [ -f "$link" ] && command -v gio >/dev/null 2>&1; then
+      gio set -t string "$link" metadata::xfce-exe-checksum \
+        "$(sha256sum "$link" | cut -d' ' -f1)" 2>/dev/null || true
+    fi
+  fi
+fi
+
 exit 0

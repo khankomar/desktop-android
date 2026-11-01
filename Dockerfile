@@ -32,7 +32,7 @@ RUN if [ "$INSTALL_CLAUDE_DESKTOP" = "true" ]; then \
         claude-desktop libayatana-appindicator3-1 && \
       rm -rf /var/lib/apt/lists/* && \
       if [ "$CLAUDE_NO_SANDBOX" = "true" ]; then \
-        for f in /usr/share/applications/claude*.desktop; do \
+        for f in /usr/share/applications/*[Cc]laude*.desktop; do \
           if [ -f "$f" ]; then sed -i -E 's|^(Exec=[^ ]*claude-desktop)|\1 --no-sandbox|' "$f"; fi; \
         done; \
         printf '#!/bin/sh\nexec /usr/bin/claude-desktop --no-sandbox "$@"\n' > /usr/local/bin/claude-desktop; \
